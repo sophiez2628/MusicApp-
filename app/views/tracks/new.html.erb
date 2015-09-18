@@ -1,0 +1,43 @@
+<h1>Add Track to <%= Album.find_by(id: @current_album_id).name %></h1>
+<form action="/tracks" method="POST">
+  <%= auth_token %>
+  <label for="track_name">TRACK TITLE</label>
+  <input type="text"
+         name="track[name]"
+         value="<%= @track.name %>"
+         id="track_name"><br>
+
+  <label for="album_name">ALBUM</label>
+  <select name="track[album_id]">
+    <% @albums.each do |album| %>
+      <option
+        value="<%= album.id %>"
+        <%= " selected" if Integer(@current_album_id) == album.id %>>
+        <%= album.name %>
+      </option>
+    <% end %>
+  </select><br>
+
+  <label for="track_kind">TYPE</label>
+  <label for="track_bonus">Bonus</label>
+  <input type="radio"
+         name="track[kind]"
+         value="Bonus"
+         id="track_kind"
+         id="track_bonus">
+  <label for="track_regular">Regular</label>
+  <input type="radio"
+         name="track[kind]"
+         value="Regular"
+         id="track_kind"
+         id="track_regular"><br>
+
+  <label for="lyrics">LYRICS</label><br>
+  <textarea name="track[lyrics]"
+            value="<%= @track.lyrics %>"
+            id="lyrics"
+            rows="5"
+            cols="40">
+  </textarea><br>
+  <input type="submit" value="Submit">
+</form>
