@@ -1,4 +1,5 @@
 class TracksController < ApplicationController
+  before_action :logged_in?
   def new
     @current_album_id = params[:album_id]
     @track = Track.new
@@ -34,6 +35,7 @@ class TracksController < ApplicationController
   def show
     @track = Track.find_by(id: params[:id])
     @track_album = Album.find_by(id: @track.album_id).name
+    @notes = Note.all 
     render :show
   end
 
@@ -41,7 +43,7 @@ class TracksController < ApplicationController
     @track = Track.find_by(id: params[:id])
     @track.destroy
     render :new
-  end 
+  end
 
   private
   def track_params

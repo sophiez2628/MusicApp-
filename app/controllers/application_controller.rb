@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
     User.find_by(session_token: session[:session_token])
   end
 
-  # def logged_in?
-  #   current_user ? true : false
-  # end
+  def logged_in?
+    if current_user.nil?
+      redirect_to new_session_url
+    end  
+  end
 end

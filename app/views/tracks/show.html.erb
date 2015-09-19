@@ -1,7 +1,7 @@
 <h1><%= @track.name %></h1>
 <p>
   <label>Album:</label>
-    <%= @track_album %><br>
+    <a href="<%= album_url(@track.album_id) %>"><%= @track_album %><br></a>
   <label>Type:</label>
     <%= @track.kind %><br>
   <label>Lyrics:</label><br>
@@ -9,8 +9,21 @@
     <a href="<%= edit_track_url(@track) %>">Edit Track</a>
 </p>
 
+<label>Leave a Note</label>
+  <form action="<%= notes_url %>" method="POST">
+    <%= auth_token %>
+    <textarea type="text" name="note[note_body]"></textarea><br>
+    <input type="hidden" name="track[id]" value="<%= @track.id %>">
+    <input type="submit" value="Submit Note">
+  </form>
+
+<label>Previous Notes</label><br>
+  <% @notes.each do |note| %>
+    <%= note.note_body %><br>
+  <% end %>
+
 <form action="<%= track_url(@track) %>" method="POST">
   <input type="hidden" name="_method" value="DELETE">
   <%= auth_token %>
   <input type="submit" value="Delete Track">
-</form> 
+</form>

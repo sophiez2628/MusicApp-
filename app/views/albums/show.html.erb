@@ -1,4 +1,7 @@
 <h1><%= @album.name %> by <%= @album.band.name %></h1>
 <p>
+  <label>Type:</label>
+  <%= @album.kind %></br>
 
+  <a href="<%= edit_album_url(@album) %>">Edit Album</a> 
 <p>

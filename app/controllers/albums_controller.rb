@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :logged_in? 
   def new
     @album = Album.new
     @bands = Band.all
@@ -15,6 +16,8 @@ class AlbumsController < ApplicationController
     else
       render :new
     end
+    #how to avoid hackers using the HTML file?
+    #avoid it in the permit part of params
   end
 
   def show
