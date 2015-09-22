@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
   def logged_in?
     if current_user.nil?
       redirect_to new_session_url
-    end  
+    end
   end
 end
