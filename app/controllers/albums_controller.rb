@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action :logged_in? 
+  before_action :logged_in?
   def new
     @album = Album.new
     @bands = Band.all
@@ -21,7 +21,8 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = Album.find_by(id: params[:id])
+    @album = Album.find(params[:id])
+    @tracks = Track.where('album_id = ?', @album.id)
   end
 
   private

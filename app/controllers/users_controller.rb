@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @bands = Band.all 
     render :show
   end
 
