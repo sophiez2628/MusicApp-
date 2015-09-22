@@ -9,7 +9,7 @@
       <% end %>
     </ul>
   <a href="<%= edit_album_url(@album) %>">Edit Album</a><br>
-  <%= link_to 'Band Page', band_url(@album.band_id) %><br>
   <%= link_to 'Add New Album', new_band_album_url(@album.band_id) %><br>
+  <%= link_to 'Band Page', band_url(@album.band_id) %><br>
   <%= button_to 'Delete Album', band_url(@album.band_id), method: :delete %>
 <p>
