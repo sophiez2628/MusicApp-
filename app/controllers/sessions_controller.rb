@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :logged_in_cant_signin
+  before_action :logged_in_cant_signin, only: [:new, :create]
 
   def logged_in_cant_signin
     if current_user

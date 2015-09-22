@@ -15,7 +15,10 @@
 
 <label>Previous Notes</label><br>
   <% @notes.each do |note| %>
-    <%= note.note_body %><br>
+    <%= note.note_body %> | by <%= note.user.email %> |
+    <% if current_user.id == note.user_id %>
+      <%= button_to 'Delete Note', note_url(note),method: :delete %>
+    <% end %><br> 
   <% end %>
 
 <form action="<%= track_url(@track) %>" method="POST">

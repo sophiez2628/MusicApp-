@@ -8,11 +8,7 @@
 
 <%= yield %>
 <% if current_user %>
-  <form action="/session" method="POST">
-    <%= auth_token %>
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Log Out">
-  </form>
+  <%= button_to 'Log Out', session_url, method: :delete %>
 <% end %>
 </body>
 </html>

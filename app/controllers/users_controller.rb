@@ -8,14 +8,14 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       log_in!(@user)
-      redirect_to user_url
+      redirect_to user_url(@user)
     else
       render :new
     end
   end
 
   def show
-    @bands = Band.all 
+    @bands = Band.all
     render :show
   end
 
